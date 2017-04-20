@@ -9,3 +9,6 @@ Also you can use other cert to sign the metadata of the SP using the:
 
  * metadata.key
  * metadata.crt
+
+openssl req -new -x509 -days 3652 -nodes -out sp.crt -keyout saml.key
+openssl req -new -x509 -days 3652 -nodes -out sp.crt -keyout sp.key
