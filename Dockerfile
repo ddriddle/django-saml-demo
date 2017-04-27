@@ -1,20 +1,21 @@
-FROM	python:2.7
-
-COPY	. /app
+FROM python:2.7
 
 WORKDIR /app
+COPY . .
 
-RUN     pip install --no-cache-dir uwsgi
-RUN     useradd uwsgi -s /bin/false
-RUN     chown -R uwsgi:uwsgi /app
+RUN pip install --no-cache-dir uwsgi
+RUN useradd uwsgi -s /bin/false
+RUN chown -R uwsgi:uwsgi /app
 
-RUN	apt-get update && apt-get install -y python-dev libxml2-dev libxmlsec1-dev libxmlsec1-openssl libxslt1-dev
+RUN apt-get update && apt-get install -y --no-install-recommends \
+      libxml2-dev \
+      libxmlsec1-dev \
+    && rm -rf /var/lib/apt/lists/*
 
-USER	uwsgi
+RUN pip install --no-cache-dir -r requirements.txt
 
-RUN     pip install --user --no-cache-dir -r requirements.txt
+EXPOSE 8000
 
-EXPOSE  8000
-
+USER uwsgi
 
 CMD ["/app/uwsgi"]
