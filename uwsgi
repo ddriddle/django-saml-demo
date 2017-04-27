@@ -1,0 +1,18 @@
+#!/bin/bash
+
+export DJANGO_SETTINGS_MODULE="demo.settings"
+export UWSGI_CHDIR=/home/admin/django-saml-demo
+export UWSGI_MODULE=demo.wsgi:application
+
+export UWSGI_NUM_PROCESSES=1
+export UWSGI_NUM_THREAD=15
+
+#export UWSGI_HTTP_SOCKET=:8000
+export UWSGI_HTTP=:8000
+export UWSGI_MASTER=TRUE
+export UWSGI_VACUUM=TRUE
+export UWSGI_LOG_X_FORWARDED_FOR=TRUE
+
+# export UWSGI_HTTP_AUTO_CHUNKED=TRUE
+
+exec /home/admin/.local/bin/uwsgi --enable-threads --http-auto-chunked

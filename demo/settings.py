@@ -39,6 +39,7 @@ INSTALLED_APPS = (
 )
 
 MIDDLEWARE_CLASSES = (
+    'django.middleware.http.ConditionalGetMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
     # 'django.middleware.csrf.CsrfViewMiddleware',
@@ -88,3 +89,9 @@ SESSION_ENGINE = 'django.contrib.sessions.backends.file'
 TEMPLATE_DIRS = (
     os.path.join(BASE_DIR, 'templates'),
 )
+
+# https://docs.djangoproject.com/en/1.8/ref/settings/#secure-proxy-ssl-header
+# http://www.tivix.com/blog/setting-ssl-amazon-elb-nginx-and-django/
+USE_X_FORWARDED_HOST = True
+USE_X_FORWARDED_PORT = True
+SECURE_PROXY_SSL_HEADER = ('HTTP_X_FORWARDED_PROTO', 'https')
