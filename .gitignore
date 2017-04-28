@@ -1,5 +1,8 @@
 *.pyc
 *.pyo
+.saml
+.pid
 
+metadata
 terraform.tfstate
 terraform.tfstate.*
