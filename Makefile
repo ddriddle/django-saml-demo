@@ -7,7 +7,7 @@ all: run
 
 build: .saml
 
-.saml: kill $(SRC)
+.saml: $(SRC)
 	docker build -t saml .
 	touch $@
 

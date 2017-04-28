@@ -22,9 +22,9 @@ ENV UWSGI_UID uwsgi
 ENV UWSGI_GID uwsgi
 
 # Maybe adding my SP's cert will help?
-RUN cp saml/certs/sp.crt /usr/local/share/ca-certificates
-RUN cp saml/certs/idp.crt /usr/local/share/ca-certificates
-RUN cp saml/certs/testshib-sp.crt /usr/local/share/ca-certificates
-RUN update-ca-certificates --fresh
+# RUN cp saml/certs/sp.crt /usr/local/share/ca-certificates
+# RUN cp saml/certs/idp.crt /usr/local/share/ca-certificates
+# RUN cp saml/certs/testshib-sp.crt /usr/local/share/ca-certificates
+# RUN update-ca-certificates --fresh
 
 CMD ["/app/uwsgi"]
